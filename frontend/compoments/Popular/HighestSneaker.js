@@ -3,11 +3,16 @@ import { Animated, StyleSheet, Text, View, Image, Dimensions, Button, ScrollView
 import HozSlider from '../../utils/HozSlider';
 
 export default function HighestSneaker({ navigation, target }) {
-    const sneakers = [
-        require('../../images/sneakers/highest/aj1-chicago.webp'),
-        require('../../images/sneakers/highest/yeezy-350-light.webp'),
-        require('../../images/sneakers/highest/travisscott-af1.webp'),
-    ]
+    const [sneakers, setSneakers] = useState([]);
+    useEffect(() => {
+        async function fetchBrands() {
+            const url = process.env.REACT_APP_URL || 'http://localhost:5000';
+            await fetch(`${url}/sneakers/highestSelling`)
+                .then(res => res.json())
+                .then(data => setSneakers(data))
+        }
+        fetchBrands();
+    }, [])
 
     return (
         <HozSlider title="Highest Selling" items={sneakers} navigation={navigation} target={target}/>

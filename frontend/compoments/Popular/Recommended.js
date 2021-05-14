@@ -3,16 +3,18 @@ import { Animated, StyleSheet, Text, View, Image, Dimensions, Button, ScrollView
 import HozSlider from '../../utils/HozSlider';
 
 export default function Recommended({ navigation, target }) {
-    const sneaker = [
-        require('../../images/recommended/Adidas-Yeezy-500-Utility-Black-Product.webp'),
-        require('../../images/recommended/adidas-Yeezy-700-V2-Static-Product-1.webp'),
-        require('../../images/recommended/adidas-Yeezy-700-V3-Arzareth-Product.webp'),
-        require('../../images/recommended/adidas-Yeezy-Slide-Pure-Product.webp'),
-        require('../../images/recommended/Converse-Chuck-Taylor-All-Star-70s-Hi-Off-White-Product.webp'),
-        require('../../images/recommended/Nike-Air-Force-1-Low-Travis-Scott-Sail-Product.webp'),
-    ]
+    const [sneakers, setSneakers] = useState([]);
+    useEffect(() => {
+        async function fetchBrands() {
+            const url = process.env.REACT_APP_URL || 'http://localhost:5000';
+            await fetch(`${url}/sneakers/recommended`)
+                .then(res => res.json())
+                .then(data => setSneakers(data))
+        }
+        fetchBrands();
+    }, [])
 
     return (
-        <HozSlider title="Recommended For You" items={sneaker} navigation={navigation} target={target} />
+        <HozSlider title="Recommended For You" items={sneakers} navigation={navigation} target={target} />
     );
 }
