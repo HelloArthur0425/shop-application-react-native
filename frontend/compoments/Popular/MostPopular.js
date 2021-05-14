@@ -3,17 +3,16 @@ import { Animated, StyleSheet, Text, View, Image, Dimensions, Button, ScrollView
 import HozSlider from '../../utils/HozSlider';
 
 export default function MostPopular({ navigation, target }) {
-    const sneakers = [
-        require('../../images/sneakers/most-popular/aj11.webp'),
-        require('../../images/sneakers/most-popular/aj6.webp'),
-        require('../../images/sneakers/most-popular/aj4.webp'),
-        require('../../images/sneakers/most-popular/aj13.webp'),
-        require('../../images/sneakers/most-popular/aj1.webp'),
-        require('../../images/sneakers/most-popular/yeezy-700.webp'),
-        require('../../images/sneakers/most-popular/yeezy-z.webp'),
-        require('../../images/sneakers/most-popular/yeezy-g.webp'),
-        require('../../images/sneakers/most-popular/af1-skeleton.webp'),
-    ]
+    const [sneakers, setSneakers] = useState([]);
+    useEffect(() => {
+        async function fetchBrands() {
+            const url = process.env.REACT_APP_URL || 'http://localhost:5000';
+            await fetch(`${url}/sneakers/all`)
+                .then(res => res.json())
+                .then(data => setSneakers(data))
+        }
+        fetchBrands();
+    }, [])
 
     return (
         <HozSlider title="Most Popular" items={sneakers} navigation={navigation} target={target}/>

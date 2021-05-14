@@ -4,7 +4,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import mysql from 'mysql';
 
-import { brandsRoute } from './routes/brands.js';
+import brandsRoute from './routes/brands.js';
+import sneakersRoute from './routes/sneakers.js';
 
 const app = express();
 dotenv.config();
@@ -23,14 +24,10 @@ const pool = mysql.createPool({
     database: process.env.DB_DATEBASE,
 })
 
-app.get('/', (req, res) => {
-    res.send("<h1>Hello, Welcome to Arthur's Database!</h1>");
-});
+app.get('/', (req, res) => { res.send("<h1>Hello, Welcome to Arthur's Database!</h1>"); });
 
-app.use('/getAllBrands', (req, res, next) => {
-    req.pool = pool;
-    next();
-}, brandsRoute)
+app.use('/brands', (req, res, next) => { req.pool = pool; next(); }, brandsRoute);
+app.use('/sneakers', (req, res, next) => { req.pool = pool; next(); }, sneakersRoute);
 
 app.listen(PORT, () => {
     console.log(`Listen on port ${PORT}`)

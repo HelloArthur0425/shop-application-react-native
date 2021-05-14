@@ -3,12 +3,16 @@ import { Animated, StyleSheet, Text, View, Image, Dimensions, Button, ScrollView
 import HozSlider from '../../utils/HozSlider';
 
 export default function BrandsSlider({ navigation, target }) {
-    const brands = [
-        require('../../images/brands/air-jordan.jpg'),
-        require('../../images/brands/nike.jpg'),
-        require('../../images/brands/yeezy.jpg'),
-        require('../../images/brands/adidas.png'),
-    ]
+    const [brands, setBrands] = useState([]);
+    useEffect(() => {
+        async function fetchBrands() {
+            const url = process.env.REACT_APP_URL || 'http://localhost:5000';
+            await fetch(`${url}/brands/all`)
+                .then(res => res.json())
+                .then(data => setBrands(data))
+        }
+        fetchBrands();
+    }, [])
 
     return (
         <View style={{ marginTop: 20 }}>

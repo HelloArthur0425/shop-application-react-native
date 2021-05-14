@@ -10,10 +10,16 @@ export default function HozSlider({ title, items, navigation, target }) {
                     {
                         items.map((item, index) => {
                             return (
-                                <TouchableHighlight key={item} underlayColor={'transparent'} onPress={() => navigation.navigate(target)}>
+                                <TouchableHighlight
+                                    key={index}
+                                    underlayColor={'transparent'}
+                                    onPress={() => navigation.navigate(target, {
+                                        targetType: target,
+                                        item: item,
+                                    })}>
                                     <View style={index === items.length - 1 ? styles.lastImageContainer : styles.imageContainer}>
                                         <View style={{ flex: 1 }}>
-                                            <Image source={item} style={styles.image} />
+                                            <Image source={{ uri: item.image_url }} style={styles.image} />
                                         </View>
                                     </View>
                                 </TouchableHighlight>
