@@ -90,7 +90,7 @@ export const getSneakersRecommended = async (req, res) => {
                                 'FROM brands, sneakers, sneaker_qty '+
                                 'WHERE brands.brand_id = sneakers.sneaker_brand '+
                                 'AND sneakers.sneaker_id = sneaker_qty.sneaker_id '+
-                                'AND brands.brand_id = 3', 
+                                'AND brands.brand_name = "ADIDAS"', 
                 (err, rows) => {
                     connection.release();
                     if (!err) {
