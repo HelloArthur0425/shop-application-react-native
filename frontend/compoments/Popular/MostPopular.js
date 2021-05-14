@@ -6,7 +6,7 @@ export default function MostPopular({ navigation, target }) {
     const [sneakers, setSneakers] = useState([]);
     useEffect(() => {
         async function fetchBrands() {
-            const url = process.env.REACT_APP_URL || 'http://localhost:5000';
+            const url = process.env.REACT_APP_URL || 'http://192.168.0.100:5000';
             await fetch(`${url}/sneakers/mostPopular`)
                 .then(res => res.json())
                 .then(data => setSneakers(data))

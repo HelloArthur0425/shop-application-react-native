@@ -2,7 +2,8 @@ import * as React from 'react';
 import { Button, StyleSheet, Text, View, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-export default function Brand({ navigation }) {
+export default function Brand({ navigation, route }) {
+    const brand = route.params.params.item
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -14,16 +15,16 @@ export default function Brand({ navigation }) {
             </View>
             <View style={{ flex: 1 }}>
                 <View style={styles.titleContainer}>
-                    <Text style={styles.title}>NIKE</Text>
+                    <Text style={styles.title}>{brand.brand_name}</Text>
                 </View>
                 <View style={styles.imageContainer}>
-                    <Image style={styles.brandImage} source={require('../../images/brands/nike.jpg')} />
+                    <Image style={styles.brandImage} source={{uri: brand.image_url}} />
                 </View>
                 <View style={styles.descriptionContainer}>
-                    <Text style={styles.description}>In Greek mythology, Nike is the Winged Goddess of Victory. The logo is derived from goddess' wing,‘swoosh’, which symbolises the sound of speed, movement, power and motivation.</Text>
+                    <Text style={styles.description}>{brand.brand_logo_ev}</Text>
                 </View>
                 <View style={styles.descriptionContainer}>
-                    <Text style={styles.description}>Nike, Inc. (/ˈnaɪki/ or /ˈnaɪk/) is an American multinational corporation that is engaged in the design, development, manufacturing, and worldwide marketing and sales of footwear, apparel, equipment, accessories, and services.</Text>
+                    <Text style={styles.description}>{brand.brand_description}</Text>
                 </View>
             </View>
         </View>
@@ -60,9 +61,9 @@ const styles = StyleSheet.create({
         fontWeight: '700',
     },
     descriptionContainer: {
-        paddingLeft: 30, 
-        paddingRight: 30, 
-        paddingTop: 20, 
+        paddingLeft: 30,
+        paddingRight: 30,
+        paddingTop: 20,
     },
     description: {
         fontSize: 14,

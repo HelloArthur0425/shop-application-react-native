@@ -6,7 +6,7 @@ export default function BrandsSlider({ navigation, target }) {
     const [brands, setBrands] = useState([]);
     useEffect(() => {
         async function fetchBrands() {
-            const url = process.env.REACT_APP_URL || 'http://localhost:5000';
+            const url = process.env.REACT_APP_URL || 'http://192.168.0.100:5000';
             await fetch(`${url}/brands/all`)
                 .then(res => res.json())
                 .then(data => setBrands(data))

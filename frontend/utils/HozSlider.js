@@ -14,8 +14,11 @@ export default function HozSlider({ title, items, navigation, target }) {
                                     key={index}
                                     underlayColor={'transparent'}
                                     onPress={() => navigation.navigate(target, {
-                                        targetType: target,
-                                        item: item,
+                                        params: {
+                                            targetType: target,
+                                            item: item,
+                                        },
+                                        merge: true,
                                     })}>
                                     <View style={index === items.length - 1 ? styles.lastImageContainer : styles.imageContainer}>
                                         <View style={{ flex: 1 }}>
