@@ -9,8 +9,10 @@ import HighestSneaker from './HighestSneaker';
 import Recommended from './Recommended';
 import Brand from '../Brand/Brand';
 import Item from '../Item/Item';
+import config from '../../config';
 
 function Popular({ navigation }) {
+    const api_url = config.API_URL || "http://192.168.0.100:5000";
     return (
         <View style={{ flex: 1 }}>
             <View style={{ flex: 3 }}>
@@ -18,10 +20,10 @@ function Popular({ navigation }) {
             </View>
             <View style={{ flex: 10 }}>
                 <ScrollView showsVerticalScrollIndicator={false}>
-                    <BrandsSlider navigation={navigation} target="Brand" />
-                    <MostPopular navigation={navigation} target="Item" />
-                    <HighestSneaker navigation={navigation} target="Item" />
-                    <Recommended navigation={navigation} target="Item" />
+                    <BrandsSlider navigation={navigation} target="Brand" api_url={api_url} />
+                    <MostPopular navigation={navigation} target="Item" api_url={api_url} />
+                    <HighestSneaker navigation={navigation} target="Item" api_url={api_url} />
+                    <Recommended navigation={navigation} target="Item" api_url={api_url} />
                 </ScrollView>
             </View>
         </View>
@@ -36,9 +38,9 @@ export default function PopularScreen({ navigation }) {
                 headerShown: false
             }}
         >
-            <Stack.Screen name="Popular" component={Popular}/>
-            <Stack.Screen name="Brand" component={Brand}/>
-            <Stack.Screen name="Item" component={Item}/>
+            <Stack.Screen name="Popular" component={Popular} />
+            <Stack.Screen name="Brand" component={Brand} />
+            <Stack.Screen name="Item" component={Item} />
         </Stack.Navigator>
     );
 }

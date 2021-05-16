@@ -60,7 +60,6 @@ const styles = StyleSheet.create({
         paddingLeft: 16,
         fontSize: 16,
         fontWeight: '600',
-        fontFamily: 'sans-serif',
     },
     image: {
         flex: 1,

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import config from './config';
 import { Text, View, StatusBar } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -8,7 +9,6 @@ import SearchScreen from './compoments/Search/SearchScreen';
 import ProfileScreen from './compoments/Profile/ProfileScreen';
 
 const Tab = createBottomTabNavigator();
-const url = 'http://192.168.0.100:5000';
 export default function App({ navigation }) {
   return (
     <View style={{ flex: 1 }}>
@@ -29,8 +29,6 @@ export default function App({ navigation }) {
                 } else if (route.name === 'Profile') {
                   iconName = focused ? 'people-sharp' : 'people-outline';
                 }
-
-                // You can return any component that you like here!
                 return <Ionicons name={iconName} size={size} color={color} />;
               },
             })}
@@ -39,21 +37,9 @@ export default function App({ navigation }) {
               inactiveTintColor: 'gray',
             }}
           >
-            <Tab.Screen
-              name="Popular"
-              component={PopularScreen}
-              initialParams={{ url: url }}
-            />
-            <Tab.Screen
-              name="Search"
-              component={SearchScreen}
-              initialParams={{ url: url }}
-            />
-            <Tab.Screen
-              name="Profile"
-              component={ProfileScreen}
-              initialParams={{ url: url }}
-            />
+            <Tab.Screen name="Popular" component={PopularScreen} />
+            <Tab.Screen name="Search" component={SearchScreen} />
+            <Tab.Screen name="Profile" component={ProfileScreen} />
           </Tab.Navigator>
         </NavigationContainer>
       </View>
