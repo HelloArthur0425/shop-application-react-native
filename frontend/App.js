@@ -8,6 +8,7 @@ import SearchScreen from './compoments/Search/SearchScreen';
 import ProfileScreen from './compoments/Profile/ProfileScreen';
 
 const Tab = createBottomTabNavigator();
+const url = 'http://192.168.0.100:5000';
 export default function App({ navigation }) {
   return (
     <View style={{ flex: 1 }}>
@@ -38,9 +39,21 @@ export default function App({ navigation }) {
               inactiveTintColor: 'gray',
             }}
           >
-            <Tab.Screen name="Popular" component={PopularScreen} />
-            <Tab.Screen name="Search" component={SearchScreen} />
-            <Tab.Screen name="Profile" component={ProfileScreen} />
+            <Tab.Screen
+              name="Popular"
+              component={PopularScreen}
+              initialParams={{ url: url }}
+            />
+            <Tab.Screen
+              name="Search"
+              component={SearchScreen}
+              initialParams={{ url: url }}
+            />
+            <Tab.Screen
+              name="Profile"
+              component={ProfileScreen}
+              initialParams={{ url: url }}
+            />
           </Tab.Navigator>
         </NavigationContainer>
       </View>
