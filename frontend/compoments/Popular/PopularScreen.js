@@ -9,6 +9,7 @@ import HighestSneaker from './HighestSneaker';
 import Recommended from './Recommended';
 import Brand from '../Brand/Brand';
 import Item from '../Item/Item';
+import ListItem from '../Item/ListItem';
 import config from '../../config';
 
 function Popular({ navigation }) {
@@ -41,6 +42,7 @@ export default function PopularScreen({ navigation }) {
             <Stack.Screen name="Popular" component={Popular} />
             <Stack.Screen name="Brand" component={Brand} />
             <Stack.Screen name="Item" component={Item} />
+            <Stack.Screen name="ListItem" component={ListItem} />
         </Stack.Navigator>
     );
 }

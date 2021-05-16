@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
 
 export default function HozSlider({ title, items, navigation, target }) {
     return (
@@ -10,7 +10,7 @@ export default function HozSlider({ title, items, navigation, target }) {
                     {
                         items.map((item, index) => {
                             return (
-                                <TouchableHighlight
+                                <TouchableOpacity
                                     key={index}
                                     underlayColor={'transparent'}
                                     onPress={() => navigation.navigate(target, {
@@ -25,7 +25,7 @@ export default function HozSlider({ title, items, navigation, target }) {
                                             <Image source={{ uri: item.image_url }} style={styles.image} />
                                         </View>
                                     </View>
-                                </TouchableHighlight>
+                                </TouchableOpacity>
                             )
                         })
                     }

@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 export default function Brand({ navigation, route }) {
     const brand = route.params.params.item
+    const target = "ListItem";
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -18,7 +19,7 @@ export default function Brand({ navigation, route }) {
                     <Text style={styles.title}>{brand.brand_name}</Text>
                 </View>
                 <View style={styles.imageContainer}>
-                    <Image style={styles.brandImage} source={{uri: brand.image_url}} />
+                    <Image style={styles.brandImage} source={{ uri: brand.image_url }} />
                 </View>
                 <View style={styles.descriptionContainer}>
                     <Text style={styles.description}>{brand.brand_logo_ev}</Text>
@@ -27,6 +28,9 @@ export default function Brand({ navigation, route }) {
                     <Text style={styles.description}>{brand.brand_description}</Text>
                 </View>
             </View>
+            <TouchableOpacity style={styles.viewButtonContainer} onPress={() => navigation.navigate(target)}>
+                <Text style={styles.viewButtonText}>View More</Text>
+            </TouchableOpacity>
         </View>
     );
 }
@@ -69,5 +73,23 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: 'bold',
         textAlign: 'justify'
+    },
+    viewButtonContainer: {
+        elevation: 8,
+        backgroundColor: "green",
+        borderRadius: 8,
+        paddingVertical: 10,
+        paddingHorizontal: 12,
+        margin: 20,
+        marginBottom: 40,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    viewButtonText: {
+        fontSize: 16,
+        color: "white",
+        fontWeight: "bold",
+        alignSelf: "center",
+        textTransform: "uppercase"
     }
 })
