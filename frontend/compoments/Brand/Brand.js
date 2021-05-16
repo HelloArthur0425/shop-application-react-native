@@ -1,36 +1,33 @@
 import * as React from 'react';
-import { Button, StyleSheet, Text, View, TouchableOpacity, Image, Dimensions } from 'react-native';
+import { Button, StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import Header from '../../utils/Header';
 
 export default function Brand({ navigation, route }) {
     const brand = route.params.params.item
     const target = "ListItem";
     return (
         <View style={styles.container}>
-            <View style={styles.header}>
+            <Header navigation={navigation} />
+            <ScrollView>
                 <View style={{ flex: 1 }}>
-                    <TouchableOpacity onPress={() => navigation.goBack()}>
-                        <Ionicons name="ios-chevron-back" size={30} color="black" />
+                    <View style={styles.titleContainer}>
+                        <Text style={styles.title}>{brand.brand_name}</Text>
+                    </View>
+                    <View style={styles.imageContainer}>
+                        <Image style={styles.brandImage} source={{ uri: brand.image_url }} />
+                    </View>
+                    <View style={styles.descriptionContainer}>
+                        <Text style={styles.description}>{brand.brand_logo_ev}</Text>
+                    </View>
+                    <View style={styles.descriptionContainer}>
+                        <Text style={styles.description}>{brand.brand_description}</Text>
+                    </View>
+                    <TouchableOpacity style={styles.viewButtonContainer} onPress={() => navigation.navigate(target)}>
+                        <Text style={styles.viewButtonText}>View More</Text>
                     </TouchableOpacity>
                 </View>
-            </View>
-            <View style={{ flex: 1 }}>
-                <View style={styles.titleContainer}>
-                    <Text style={styles.title}>{brand.brand_name}</Text>
-                </View>
-                <View style={styles.imageContainer}>
-                    <Image style={styles.brandImage} source={{ uri: brand.image_url }} />
-                </View>
-                <View style={styles.descriptionContainer}>
-                    <Text style={styles.description}>{brand.brand_logo_ev}</Text>
-                </View>
-                <View style={styles.descriptionContainer}>
-                    <Text style={styles.description}>{brand.brand_description}</Text>
-                </View>
-            </View>
-            <TouchableOpacity style={styles.viewButtonContainer} onPress={() => navigation.navigate(target)}>
-                <Text style={styles.viewButtonText}>View More</Text>
-            </TouchableOpacity>
+            </ScrollView>
         </View>
     );
 }
@@ -65,9 +62,8 @@ const styles = StyleSheet.create({
         fontWeight: '700',
     },
     descriptionContainer: {
-        paddingLeft: 30,
-        paddingRight: 30,
-        paddingTop: 20,
+        paddingHorizontal: Dimensions.get('screen').width * 0.1,
+        paddingVertical: 20,
     },
     description: {
         fontSize: 14,
