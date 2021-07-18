@@ -4,6 +4,7 @@ import HozSlider from '../../utils/HozSlider';
 
 export default function BrandsSlider({ navigation, target, api_url }) {
     const [brands, setBrands] = useState([]);
+    console.log(api_url);
     useEffect(() => {
         async function fetchBrands() {
             await fetch(`${api_url}/brands/all`)

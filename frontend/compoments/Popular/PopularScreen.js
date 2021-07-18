@@ -13,7 +13,8 @@ import ListItem from '../Item/ListItem';
 import config from '../../config';
 
 function Popular({ navigation }) {
-    const api_url = config.API_URL || "http://192.168.0.100:5000";
+    // const api_url = config.API_URL || "http://localhost:5000";
+    const api_url = "http://172.20.10.2:5000"
     return (
         <View style={{ flex: 1 }}>
             <View style={{ flex: 3 }}>
